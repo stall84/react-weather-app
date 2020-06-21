@@ -8,7 +8,7 @@ class WeatherMain extends Component {
         super(props)
 
         this.state = {
-            weather: {}
+            weather: null
         }
     }
 
@@ -42,7 +42,7 @@ class WeatherMain extends Component {
 
                 <h1>OUR WEATHER APP</h1>
                 <div>
-                    <WxDisplay {...this.state.weather.main} />
+                    <WxDisplay {...this.state.weather} />
                 </div>
 
             </div>
