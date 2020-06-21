@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import WxDisplay from './WxDisplay';
+import '../styles/WeatherMain.css';
+
 
 
 class WeatherMain extends Component {
@@ -40,7 +42,7 @@ class WeatherMain extends Component {
         return (
             <div className="mainWindow">
 
-                <h1>OUR WEATHER APP</h1>
+                <h1>YOUR WEATHER APP</h1>
                 <div>
                     <WxDisplay {...this.state.weather} />
                 </div>

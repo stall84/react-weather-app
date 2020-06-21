@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/WxDisplay.css';
 //import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 
@@ -13,14 +14,25 @@ export default function WxDisplay (props) {
      if (!props.main) {
          return null;
      }
-
+     if (!props.weather) {
+         return null;
+     }
+     let icon = props.weather[0].icon;
+     let iconUrl = `http://openweathermap.org/img/wn/${icon}.png`
+     console.log(iconUrl)
     return (
-        <div>
-            <h2>Local Conditions:</h2>
-            <h3>Current Temp: {props.main.temp}F</h3>
-            <h3>Low Temp: {props.main.temp_min}F</h3>
-            <h3>Current Humidity: {props.main.humidity}%</h3>
-            <h3>City Name: {props.name}</h3>
+        <div className="container">
+            <div className="localConditions">
+                <h2>Local Conditions: <img src={iconUrl} alt="img" /> {props.weather[0].description}</h2>
+            </div>
+                <div className="conditionsBox">
+                    <h3>Temp: {props.main.temp}F</h3>
+                    <h3>Humidity: {props.main.humidity}%</h3>
+                    <h3>Wind: {props.wind.speed}mph</h3>
+                </div>
+                <div className="locationDiv">
+                    <h3>City Name: {props.name}</h3>
+                </div>
         </div>
         )
 }

@@ -1,0 +1,21 @@
+
+
+body {
+    text-align: center;
+}
+
+.mainWindow {
+    margin: 0 auto;
+    width: 50vw;
+}
+
+.mainWindow > h1 {
+    background-color: ivory;
+    border: 2px solid grey;
+    box-shadow: 2px 2px;
+    transition: all .5s ease-in-out;
+}
+
+.mainWindow > h1:hover {
+    box-shadow: 6px 6px;
+}
