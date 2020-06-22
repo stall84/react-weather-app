@@ -15,8 +15,13 @@ class App extends Component {
 cityInput = React.createRef()
 
  goToCity = (event) => {
+   // Stop the form from resubmitting (prevent default)
    event.preventDefault()
+   // Get the text of the input city
    console.log(this.cityInput.current.value)
+   // Change the page to the current-weather display page while also handing down the 
+   // city name text data via props
+   
  }
 
   render() {
