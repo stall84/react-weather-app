@@ -19,20 +19,23 @@ export default function WxDisplay (props) {
      }
      let icon = props.weather[0].icon;
      let iconUrl = `http://openweathermap.org/img/wn/${icon}.png`
-     console.log(iconUrl)
+     
+   
     return (
         <div className="container">
+             <div className="locationDiv">
+                    <h2>Local Conditions For: {props.name}</h2>
+                </div>
             <div className="localConditions">
-                <h2>Local Conditions: <img src={iconUrl} alt="img" /> {props.weather[0].description}</h2>
+                <h2><img src={iconUrl} alt="img" /> {props.weather[0].description.toUpperCase()}</h2>
             </div>
                 <div className="conditionsBox">
-                    <h3>Temp: {props.main.temp}F</h3>
+                    <h3>Temp: {(props.main.temp).toFixed()}F</h3>
                     <h3>Humidity: {props.main.humidity}%</h3>
-                    <h3>Wind: {props.wind.speed}mph</h3>
+                    <h3>Pressure: {(props.main.pressure/33.864).toFixed(2)}inHg</h3>
+                    <h3>Wind: {(props.wind.speed).toFixed()}mph</h3>
                 </div>
-                <div className="locationDiv">
-                    <h3>City Name: {props.name}</h3>
-                </div>
+               
         </div>
         )
 }
