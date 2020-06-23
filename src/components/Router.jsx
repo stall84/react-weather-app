@@ -16,7 +16,7 @@ const Router = () => {
         <Switch>
 
             <Route exact path="/" component={App} />
-            <Route path="/curr-cond" component={WeatherMain} />
+            <Route exact path="/curr-cond" component={WeatherMain} />
             <Route component={NotFound} />
 
             

@@ -18,7 +18,8 @@ class WeatherMain extends Component {
    
     // Create a method to load in the local weather when the component is loaded
     componentDidMount() {
-        const city = "Atlanta,GA,USA"
+        console.log(this.props.inputCity)
+        const city = this.props.inputCity
         const apiKey = "f5b277d2b3a90770bbc8c47f0cb66047"
         const apiCall = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${apiKey}`
         axios.get(apiCall)
