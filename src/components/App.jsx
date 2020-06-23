@@ -6,7 +6,7 @@ import {
     Route,
     Link
 } from 'react-router-dom';
-
+import axios from 'axios';
 import '../styles/App.css';
 
 class App extends Component {
@@ -18,7 +18,8 @@ class App extends Component {
 
         this.state = {
 
-          inputCity: null
+          inputCity: null,
+          weather: null
 
         }
     }
@@ -52,8 +53,18 @@ handleChange = (event) => {
    //this.props.history.push('/curr-cond');
 }
 
-queryCity = () => {
-  
+queryCity = (event) => {
+        event.preventDefault()
+        const city = this.state.inputCity
+        const apiKey = "f5b277d2b3a90770bbc8c47f0cb66047"
+        const apiCall = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${apiKey}`
+        axios.get(apiCall)
+            .then((response) => {
+                this.setState({
+                    weather: response.data
+                })
+                console.log(this.state)
+            }).catch(err => {console.log(`There was an error: ${err}`)})
 }
 
   render() {
@@ -65,7 +76,7 @@ queryCity = () => {
            
               <div className="container searchForm">
                 <h2>Enter a city, state, country<br/>for local conditions</h2>
-                <form className="citySearchForm" onSubmit={this.goToCity}>
+                <form className="citySearchForm" onSubmit={this.queryCity}>
                   <label htmlFor="citySearch">City Search</label>
                   <input value={this.state.inputCity} onChange={this.handleChange} type="text" id="citySearch" name="citySearch" placeholder="e.g. Atlanta,GA,USA"/>
                   <input type="submit" />
