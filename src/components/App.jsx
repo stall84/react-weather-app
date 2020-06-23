@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import WeatherMain from './WeatherMain';
+import Footer from './Footer';
 import {
     BrowserRouter as Router,
     Switch,
@@ -89,6 +90,8 @@ queryCity = (event) => {
                 <div class="mainWeatherDiv">
                 <WeatherMain {...this.state} />
                 </div>
+
+                <Footer />
            
         </React.Fragment>
     )
