@@ -5,10 +5,12 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    withRouter,
     Link
 } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/App.css';
+
 
 class App extends Component {
 
@@ -57,15 +59,8 @@ handleChange = (event) => {
 queryCity = (event) => {
         event.preventDefault()
         const city = this.state.inputCity
-        const apiKey = "f5b277d2b3a90770bbc8c47f0cb66047"
-        const apiCall = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${apiKey}`
-        axios.get(apiCall)
-            .then((response) => {
-                this.setState({
-                    weather: response.data
-                })
-                console.log(this.state)
-            }).catch(err => {console.log(`There was an error: ${err}`)})
+        this.props.history.push(`/curr-cond/${city}`)
+
 }
 
   render() {
@@ -87,9 +82,9 @@ queryCity = (event) => {
            
 
             
-                <div class="mainWeatherDiv">
+                {/* <div class="mainWeatherDiv">
                 <WeatherMain {...this.state} />
-                </div>
+                </div> */}
 
                 <Footer />
            
@@ -99,4 +94,5 @@ queryCity = (event) => {
 
 }
 
-export default App;
+
+export default withRouter(App);

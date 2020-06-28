@@ -6,13 +6,29 @@ import '../styles/WeatherMain.css';
 
 
 class WeatherMain extends Component {
-  
+    
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            weather: ''
+        }
+    }
 
     // Set up base-url/api-call
    
     // Create a method to load in the local weather when the component is loaded
     componentDidMount() {
-        console.log(this.props.inputCity)
+        const { city } = this.props.match.params;
+        const apiKey = process.env.REACT_APP_WX_API_KEY
+        const apiCall = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${apiKey}`
+        axios.get(apiCall)
+            .then((response) => {
+                this.setState({
+                    weather: response.data
+                })
+                console.log(this.state)
+            }).catch(err => {console.log(`There was an error: ${err}`)})
         
     }
 
@@ -30,7 +46,7 @@ class WeatherMain extends Component {
 
                 <h1>YOUR WEATHER APP</h1>
                 <div>
-                    <WxDisplay {...this.props.weather} />
+                    <WxDisplay {...this.state.weather} />
                 </div>
 
             </div>
